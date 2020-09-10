@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttachToAnchor : MonoBehaviour
 {
     [SerializeField] private Transform limbAnchor;
-    private void FixedUpdate()
+    private void Update()
     {
         this.transform.position = limbAnchor.position;
     }

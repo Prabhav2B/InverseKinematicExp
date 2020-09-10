@@ -6,25 +6,37 @@ public class HandleTargetting : MonoBehaviour
 {
 
     // The Target for the limb
-    public Transform ActualTarget;
-    public int Threshold = 10;
+    [SerializeField] private Transform limbTarget;
+    [SerializeField] private int threshold = 40;
 
-    private Vector3 MoveTowards;
+    private Vector3 moveTowards;
+    Vector3 vel = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        var distance = (this.transform.position - ActualTarget.transform.position).sqrMagnitude;
+        var distance = (this.transform.position - limbTarget.transform.position).sqrMagnitude;
 
-        if (distance * distance > Threshold * Threshold) {
-            MoveTowards = this.transform.position;
-            ActualTarget.transform.position = Vector3.MoveTowards(ActualTarget.transform.position, MoveTowards, 0.5f);
+        if (distance > threshold * threshold)
+        {
+            StopAllCoroutines();
+            StartCoroutine("MoveTowardsTarget", limbTarget.transform.position);
         }
     }
+
+    IEnumerator MoveTowardsTarget(Vector3 target)
+    {
+        while (true)
+        {
+            this.transform.position = Vector3.SmoothDamp(this.transform.position, target, ref vel, .1f);
+
+            if ((this.transform.position - target).sqrMagnitude <= .01f)
+                break;
+            
+            yield return null;
+        }
+
+        yield return null ;
+    }
+
+
 }
