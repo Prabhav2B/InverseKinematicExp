@@ -18,18 +18,18 @@ public class HandleTargetting : MonoBehaviour
     private Vector3 moveTowards;
     Vector3 vel = Vector3.zero;
     
-    private float speed = 0.1f;
+    private float timeToReach = 0.1f;
 
     void Update()
     {
         var distance = (this.transform.position - limbTarget.transform.position).sqrMagnitude;
 
-        HandleTargetting otherScript = oppositeTarget.GetComponent<HandleTargetting>();
+        HandleTargetting otherScript = oppositeTarget.GetComponentInChildren<HandleTargetting>();
 
         if (distance > threshold * threshold && !otherScript.isMoving)
         {
-            speed = 10 / distance;
-            Debug.Log(distance);
+            //timeToReach =  distance/1000f; Needs to be fixed/rethought
+            //Debug.Log(distance);
             StopAllCoroutines();
             StartCoroutine("MoveTowardsTarget", limbTarget.transform.position);
         }
@@ -40,7 +40,7 @@ public class HandleTargetting : MonoBehaviour
         isMoving = true;
         while (true)
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, target, ref vel, speed);
+            this.transform.position = Vector3.SmoothDamp(this.transform.position, target, ref vel, timeToReach);
 
             if ((this.transform.position - target).sqrMagnitude <= .01f)
             {

@@ -141,7 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e36a38492915be479b6f5a0bb740591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   limbTarget: {fileID: 0}
+  oppositeTarget: {fileID: 0}
   threshold: 10
 --- !u!1 &4429355336313605590
 GameObject:
@@ -235,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7561cd4c9e2234747a296233f1339779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetFrom: {fileID: 0}
+  offsetFrom: {fileID: 4429355335242075116}
 --- !u!1 &5056942591611512370
 GameObject:
   m_ObjectHideFlags: 0
