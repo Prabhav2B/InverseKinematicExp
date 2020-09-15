@@ -7,6 +7,8 @@ public class HandleElevation : MonoBehaviour
     Ray ray;
 
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private Transform offsetFrom;
+    private Vector3 offset;
 
     private float groundSlopeAngle = 0f;            // Angle of the slope in degrees
     private float groundSlopeElevation = 0f;            // Elevation of the slope in global coordinates
@@ -23,6 +25,12 @@ public class HandleElevation : MonoBehaviour
     [SerializeField] private Vector3 rayOriginOffset1 = new Vector3(-0.2f, 0f, 0.16f);
     [SerializeField] private Vector3 rayOriginOffset2 = new Vector3(0.2f, 0f, -0.16f);
 
+    private void Start()
+    {
+        offset = this.transform.position - offsetFrom.position;
+    }
+
+
     void FixedUpdate()
     {
         Vector3 origin = new Vector3(transform.position.x,
@@ -35,11 +43,14 @@ public class HandleElevation : MonoBehaviour
             transform.position.y + startDistanceFromBottom,
             transform.position.z));
 
-            {
-                this.transform.position = new Vector3(transform.position.x,
+            this.transform.position = new Vector3(offsetFrom.position.x + offset.x,
             groundSlopeElevation,
-            transform.position.z);
-            }
+            offsetFrom.position.z + offset.z);
+
+        }
+        else
+        {
+            this.transform.position = offsetFrom.position + offset;
         }
     }
 
