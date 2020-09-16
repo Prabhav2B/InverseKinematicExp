@@ -9,11 +9,14 @@ public class HandleBodyElevation : MonoBehaviour
     private HandleTargetting[] targets;
     float initialElevation;
     float meanTargetInitalElevation;
+    Rigidbody rb;
 
     private void Start()
     {
         initialElevation = this.transform.position.y;
         targets = targetParent.GetComponentsInChildren<HandleTargetting>();
+
+        rb = GetComponent<Rigidbody>();
 
         float sum = 0;
         foreach (var target in targets)
@@ -28,6 +31,7 @@ public class HandleBodyElevation : MonoBehaviour
     {
         float elevation = CalculateAverageElevation();
         this.transform.position = new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z);
+        //rb.MovePosition(new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z));
     }
 
     private float CalculateAverageElevation()
