@@ -5,6 +5,10 @@ using UnityEngine;
 public class SpyderMovement : MonoBehaviour
 {
     Rigidbody rb;
+    private float elevation;
+
+    [Space(15)]
+    public AnimationCurve curveMovement = new AnimationCurve();
 
     private void Start()
     {

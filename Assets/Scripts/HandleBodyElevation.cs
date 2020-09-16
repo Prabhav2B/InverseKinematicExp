@@ -11,6 +11,9 @@ public class HandleBodyElevation : MonoBehaviour
     float meanTargetInitalElevation;
     Rigidbody rb;
 
+    private float elevation;
+
+
     private void Start()
     {
         initialElevation = this.transform.position.y;
@@ -30,7 +33,7 @@ public class HandleBodyElevation : MonoBehaviour
     private void FixedUpdate()
     {
         float elevation = CalculateAverageElevation();
-        this.transform.position = new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z);
+        //transform.position = new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z);
         //rb.MovePosition(new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z));
     }
 
