@@ -7,16 +7,17 @@ public class HandleBodyElevation : MonoBehaviour
 {
     [SerializeField]private Transform targetParent;
     private HandleTargetting[] targets;
-    float initialElevation;
+    
     float meanTargetInitalElevation;
     Rigidbody rb;
+    SpyderMovement spyderMovement;
 
     private float elevation;
 
 
     private void Start()
     {
-        initialElevation = this.transform.position.y;
+       
         targets = targetParent.GetComponentsInChildren<HandleTargetting>();
 
         rb = GetComponent<Rigidbody>();
@@ -28,11 +29,14 @@ public class HandleBodyElevation : MonoBehaviour
         }
 
         meanTargetInitalElevation = sum / targets.Length;
+
+        spyderMovement = GetComponent<SpyderMovement>();
     }
 
     private void FixedUpdate()
     {
         float elevation = CalculateAverageElevation();
+        spyderMovement.Elevation = elevation;
         //transform.position = new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z);
         //rb.MovePosition(new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z));
     }
