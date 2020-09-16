@@ -590,6 +590,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 82235a1cce084fd44bc20aadf262a2bc,
         type: 2}
+    - target: {fileID: 879934760, guid: 5fed8f0873123a147a6e7ab39ecec371, type: 3}
+      propertyPath: threshold
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4429355335242075116, guid: 5fed8f0873123a147a6e7ab39ecec371,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -804,6 +808,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 82235a1cce084fd44bc20aadf262a2bc,
         type: 2}
+    - target: {fileID: 879934760, guid: 5fed8f0873123a147a6e7ab39ecec371, type: 3}
+      propertyPath: threshold
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4429355335242075116, guid: 5fed8f0873123a147a6e7ab39ecec371,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1208,6 +1216,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 82235a1cce084fd44bc20aadf262a2bc,
         type: 2}
+    - target: {fileID: 879934760, guid: 5fed8f0873123a147a6e7ab39ecec371, type: 3}
+      propertyPath: threshold
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4429355335242075116, guid: 5fed8f0873123a147a6e7ab39ecec371,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1423,6 +1435,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 82235a1cce084fd44bc20aadf262a2bc,
         type: 2}
+    - target: {fileID: 879934760, guid: 5fed8f0873123a147a6e7ab39ecec371, type: 3}
+      propertyPath: threshold
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4429355335242075116, guid: 5fed8f0873123a147a6e7ab39ecec371,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -2090,17 +2106,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926936026}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aae26b5480e89c24bb994686860fcac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curveMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1953841674 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5056942591611512370, guid: 5fed8f0873123a147a6e7ab39ecec371,

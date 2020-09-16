@@ -37,8 +37,6 @@ public class HandleBodyElevation : MonoBehaviour
     {
         float elevation = CalculateAverageElevation();
         spyderMovement.Elevation = elevation;
-        //transform.position = new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z);
-        //rb.MovePosition(new Vector3(this.transform.position.x, initialElevation + elevation, this.transform.position.z));
     }
 
     private float CalculateAverageElevation()
