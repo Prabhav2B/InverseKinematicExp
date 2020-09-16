@@ -5,18 +5,21 @@ using UnityEngine;
 public class SpyderMovement : MonoBehaviour
 {
     Rigidbody rb;
-    private float elevation;
+    float initialElevation;
+    public float Elevation { private get; set; }
 
-    [Space(15)]
-    public AnimationCurve curveMovement = new AnimationCurve();
 
     private void Start()
     {
+        initialElevation = this.transform.position.y;
         rb = this.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        rb.MovePosition(this.transform.position + (Vector3.forward * Time.deltaTime * 30f));
+        Vector3 temp = new Vector3(this.transform.position.x, initialElevation + Elevation, this.transform.position.z);
+        rb.MovePosition(temp +
+            (Vector3.forward * Time.deltaTime * 30f));
+        
     }
 }
