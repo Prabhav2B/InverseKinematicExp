@@ -14,6 +14,7 @@ public class HandleTargetting : MonoBehaviour
     [SerializeField] private Transform limbTarget;
     [SerializeField] private GameObject oppositeTarget;
     [SerializeField] private int threshold = 40;
+    [SerializeField] private AnimationCurve legMovementCurve = new AnimationCurve();
 
     private Vector3 moveTowards;
     Vector3 vel = Vector3.zero;
