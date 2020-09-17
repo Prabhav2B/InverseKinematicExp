@@ -15,10 +15,17 @@ public class HandleTargetting : MonoBehaviour
     [SerializeField] private GameObject oppositeTarget;
     [SerializeField] private int threshold = 40;
 
+    public GlobalScript legMovement;
+
     private Vector3 moveTowards;
     Vector3 vel = Vector3.zero;
     
-    private float timeToReach = 0.1f;
+    private float timeToReach = 0.175f;
+    private float legHeightChange = 3;
+
+
+    private float timeElapsed = 0f;
+    private Vector3 originalPosition;
 
     void Update()
     {
@@ -26,33 +33,30 @@ public class HandleTargetting : MonoBehaviour
 
         HandleTargetting otherScript = oppositeTarget.GetComponentInChildren<HandleTargetting>();
 
-        if (distance > threshold * threshold && !otherScript.isMoving)
+        if (distance > threshold * threshold && !otherScript.isMoving && !isMoving)
         {
-            //timeToReach =  distance/1000f; Needs to be fixed/rethought
-            //Debug.Log(distance);
-            StopAllCoroutines();
-            StartCoroutine("MoveTowardsTarget", limbTarget.transform.position);
-        }
-    }
-
-    IEnumerator MoveTowardsTarget(Vector3 target)
-    {
-        isMoving = true;
-        while (true)
+            timeElapsed = 0f;
+            originalPosition = this.transform.position;
+            isMoving = true;
+            moveTowards = limbTarget.position;
+        } else if (isMoving)
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, target, ref vel, timeToReach);
+            timeElapsed += Time.deltaTime;
 
-            if ((this.transform.position - target).sqrMagnitude <= .01f)
+            float percentCompleted = timeElapsed / timeToReach;
+            float curveValue = legMovement.curve.Evaluate(percentCompleted);
+
+            this.transform.position = new Vector3(
+                originalPosition.x * (1 - percentCompleted) + moveTowards.x * percentCompleted,
+                originalPosition.y * (1 - percentCompleted) + moveTowards.y * percentCompleted + (curveValue * legHeightChange),
+                originalPosition.z * (1 - percentCompleted) + moveTowards.z * percentCompleted
+            );
+
+            if (timeElapsed >= timeToReach)
             {
                 isMoving = false;
-                break;
             }
-            
-            yield return null;
-        }
-
-        yield return null ;
+        } 
     }
-
 
 }
