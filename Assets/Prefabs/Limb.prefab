@@ -144,7 +144,7 @@ MonoBehaviour:
   isMoving: 0
   limbTarget: {fileID: 0}
   oppositeTarget: {fileID: 0}
-  threshold: 10
+  threshold: 12
   legMovement: {fileID: 0}
 --- !u!1 &4429355336313605590
 GameObject:

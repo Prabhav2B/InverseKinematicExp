@@ -35,8 +35,6 @@ public class HandleTargetting : MonoBehaviour
 
         if (distance > threshold * threshold && !otherScript.isMoving && !isMoving)
         {
-            //timeToReach =  distance/1000f; Needs to be fixed/rethought
-            //Debug.Log(distance);
             timeElapsed = 0f;
             originalPosition = this.transform.position;
             isMoving = true;
@@ -50,7 +48,7 @@ public class HandleTargetting : MonoBehaviour
 
             this.transform.position = new Vector3(
                 originalPosition.x * (1 - percentCompleted) + moveTowards.x * percentCompleted,
-                originalPosition.y * (1 - percentCompleted) + moveTowards.y * percentCompleted + curveValue * legHeightChange,
+                originalPosition.y * (1 - percentCompleted) + moveTowards.y * percentCompleted + (curveValue * legHeightChange),
                 originalPosition.z * (1 - percentCompleted) + moveTowards.z * percentCompleted
             );
 
