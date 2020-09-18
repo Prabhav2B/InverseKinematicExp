@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class HandleBodyElevation : MonoBehaviour
@@ -9,18 +7,13 @@ public class HandleBodyElevation : MonoBehaviour
     private HandleTargetting[] targets;
     
     float meanTargetInitalElevation;
-    Rigidbody rb;
     SpyderMovement spyderMovement;
-
-    private float elevation;
 
 
     private void Start()
     {
        
         targets = targetParent.GetComponentsInChildren<HandleTargetting>();
-
-        rb = GetComponent<Rigidbody>();
 
         float sum = 0;
         foreach (var target in targets)

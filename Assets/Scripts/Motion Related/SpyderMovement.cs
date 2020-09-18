@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SpyderMovement : MonoBehaviour
 {
+    [SerializeField] private float movementSpeed = 10f;
+    [SerializeField] private bool playerControlled = false;
+
+
     Rigidbody rb;
     float initialElevation;
     public float Elevation { private get; set; }
@@ -11,7 +15,6 @@ public class SpyderMovement : MonoBehaviour
     public float InputX { get; private set; }
     public float InputZ { get; private set; }
 
-    [SerializeField] private bool playerControlled = false;
 
 
     private void Start()
@@ -33,15 +36,22 @@ public class SpyderMovement : MonoBehaviour
         if (playerControlled)
         {
             input = new Vector3(InputX, 0, InputZ);
+            Vector3 target = new Vector3(this.transform.position.x, initialElevation + Elevation, this.transform.position.z);
+
+            Vector3 elevation = target - this.transform.position ;
+            Vector3 direction = (input + elevation).normalized;
+
+
+            if (InputX != 0 || InputZ != 0)
+            {
+                rb.MovePosition(this.transform.position + 
+                    (direction * Time.fixedDeltaTime * movementSpeed));
+            }
         }
         else
         {
             input = Vector3.forward;
         }
-
-        Vector3 temp = new Vector3(this.transform.position.x, initialElevation + Elevation, this.transform.position.z);
-        rb.MovePosition(temp +
-            (input * Time.deltaTime * 10f));
         
     }
 }
