@@ -36,7 +36,8 @@ public class SpyderMovement : MonoBehaviour
         if (playerControlled)
         {
             input = new Vector3(InputX, 0, InputZ);
-            Vector3 target = new Vector3(this.transform.position.x, initialElevation + Elevation, this.transform.position.z);
+            Vector3 localChangeInElevation = new Vector3(0f, Elevation, 0f);
+            Vector3 target = this.transform.TransformPoint(localChangeInElevation);
 
             Vector3 elevation = target - this.transform.position ;
             Vector3 direction = (input + elevation).normalized;

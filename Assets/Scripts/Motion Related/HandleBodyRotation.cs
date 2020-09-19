@@ -8,7 +8,8 @@ public class HandleBodyRotation : MonoBehaviour
     // Order is BackLeft [0], BackRight [1], FrontLeft [2], FrontRight [3]
     // Front is + on the Z axis, right is + on the X axis
     [SerializeField] private Transform[] targets;
-    [SerializeField] private float rotationDamp = 0.35f;
+    [Range(0f, 1f)]
+    [SerializeField] private float rotationDamp = 0.8f;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -30,9 +31,9 @@ public class HandleBodyRotation : MonoBehaviour
 
         this.GetComponent<Rigidbody>().MoveRotation(
             new Quaternion(
-                -1 * Mathf.Atan(backFrontDifference / averageZDistance * rotationDamp), 
+                -1 * Mathf.Atan(backFrontDifference / averageZDistance * (1 - rotationDamp)), 
                 transform.rotation.y,
-                Mathf.Atan(leftRightDifference / averageXDistance * rotationDamp), 
+                Mathf.Atan(leftRightDifference / averageXDistance * (1 - rotationDamp)), 
                 transform.rotation.w
             )
         );
