@@ -3,51 +3,43 @@ using UnityEngine;
 
 public class HandleBodyElevation : MonoBehaviour
 {
-    [SerializeField] private float targetElevation = 12f;
-    [SerializeField]private LayerMask groundlayer = 1 >> 8;
+    [SerializeField] private Transform targetParent;
+    private HandleTargetting[] targets;
 
-    private Vector3 offset;
-
+    float meanTargetInitalElevation;
     SpyderMovement spyderMovement;
-    float testDistance = 0f;
-    float hitDistance;
+
 
     private void Start()
     {
-        offset = Vector3.up * 25;
+
+        targets = targetParent.GetComponentsInChildren<HandleTargetting>();
+
+        float sum = 0;
+        foreach (var target in targets)
+        {
+            sum += target.transform.position.y;
+        }
+
+        meanTargetInitalElevation = sum / targets.Length;
+
         spyderMovement = GetComponent<SpyderMovement>();
     }
 
     private void FixedUpdate()
     {
-        spyderMovement.Elevation = CalculateAverageElevation();
+        float elevation = CalculateAverageElevation();
+        spyderMovement.Elevation = elevation;
     }
 
     private float CalculateAverageElevation()
     {
-        Ray ray = new Ray(this.transform.position + offset, -this.transform.up);
-        RaycastHit hit;
-
-        float elevation;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundlayer))
+        float sum = 0;
+        foreach (var target in targets)
         {
-
-            float distanceToGround = hit.distance - offset.y;
-            hitDistance = distanceToGround;
-            elevation = targetElevation - distanceToGround;
-        }
-        else
-        {
-            Debug.Log("Piece of Shit");
-            elevation = 0f;
+            sum += (target.transform.position.y - meanTargetInitalElevation);
         }
 
-        return elevation;
+        return (sum / targets.Length);
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(this.transform.position, -transform.up * hitDistance);
-    }
-
 }
