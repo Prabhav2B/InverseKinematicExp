@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class HandleBodyElevation : MonoBehaviour
 {
-    [SerializeField]private Transform targetParent;
+    [SerializeField] private Transform targetParent;
     private HandleTargetting[] targets;
-    
-    float meanTargetInitalElevation;
-    Rigidbody rb;
-    SpyderMovement spyderMovement;
 
-    private float elevation;
+    float meanTargetInitalElevation;
+    SpyderMovement spyderMovement;
 
 
     private void Start()
     {
-       
-        targets = targetParent.GetComponentsInChildren<HandleTargetting>();
 
-        rb = GetComponent<Rigidbody>();
+        targets = targetParent.GetComponentsInChildren<HandleTargetting>();
 
         float sum = 0;
         foreach (var target in targets)
@@ -47,6 +40,6 @@ public class HandleBodyElevation : MonoBehaviour
             sum += (target.transform.position.y - meanTargetInitalElevation);
         }
 
-       return(sum / targets.Length);
+        return (sum / targets.Length);
     }
 }
