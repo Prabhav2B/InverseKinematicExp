@@ -18,14 +18,13 @@ public class LookAround : MonoBehaviour
     private void Update()
     {
         
-            rotationX += Input.GetAxis("Mouse X") * sensitivityX;
-            rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
-                //= transform.localEulerAngles.y 
+        rotationX += Input.GetAxis("Mouse X") * sensitivityX;
+        rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
 
-            rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-            rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
+        rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+        rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
-            transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+        transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
         
     }
 }

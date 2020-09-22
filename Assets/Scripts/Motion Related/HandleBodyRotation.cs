@@ -11,9 +11,15 @@ public class HandleBodyRotation : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float rotationDamp = 0.8f;
     // Start is called before the first frame update
+    Camera mainCam;
+
+    private void Start()
+    {
+        mainCam = Camera.main;    
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // The average y coordinate difference between back and front
         float backFrontDifference = (((targets[2].position.y + targets[3].position.y) / 2) -
@@ -28,6 +34,8 @@ public class HandleBodyRotation : MonoBehaviour
 
         float averageXDistance = (((targets[0].position.x + targets[2].position.x) / 2) -
             ((targets[1].position.x + targets[3].position.x) / 2));
+
+        //float facingDirectionDifference
 
         this.GetComponent<Rigidbody>().MoveRotation(
             new Quaternion(
