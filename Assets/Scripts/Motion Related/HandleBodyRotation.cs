@@ -35,14 +35,13 @@ public class HandleBodyRotation : MonoBehaviour
         float averageXDistance = (((targets[0].position.x + targets[2].position.x) / 2) -
             ((targets[1].position.x + targets[3].position.x) / 2));
 
-        //float facingDirectionDifference
+
 
         this.GetComponent<Rigidbody>().MoveRotation(
-            new Quaternion(
-                -1 * Mathf.Atan(backFrontDifference / averageZDistance * (1 - rotationDamp)), 
-                transform.rotation.y,
-                Mathf.Atan(leftRightDifference / averageXDistance * (1 - rotationDamp)), 
-                transform.rotation.w
+              Quaternion.Euler(
+                -1 * Mathf.Atan(backFrontDifference / averageZDistance * (1 - rotationDamp)) * 180/Mathf.PI, 
+                mainCam.transform.rotation.y * 180/Mathf.PI,
+                Mathf.Atan(leftRightDifference / averageXDistance * (1 - rotationDamp)) * 180 / Mathf.PI
             )
         );
     }
