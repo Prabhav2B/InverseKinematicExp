@@ -38,7 +38,7 @@ public class HandleTargetting : MonoBehaviour
             timeElapsed = 0f;
             originalPosition = this.transform.position;
             isMoving = true;
-            moveTowards = limbTarget.position;
+            moveTowards = limbTarget.position + (limbTarget.position - originalPosition) * 0.5f;
         } else if (isMoving)
         {
             timeElapsed += Time.deltaTime;
