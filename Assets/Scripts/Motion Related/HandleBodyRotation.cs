@@ -11,12 +11,7 @@ public class HandleBodyRotation : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float rotationDamp = 0.8f;
     // Start is called before the first frame update
-    Camera mainCam;
-
-    private void Start()
-    {
-        mainCam = Camera.main;    
-    }
+    [SerializeField]private Transform rotationReference;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -40,7 +35,7 @@ public class HandleBodyRotation : MonoBehaviour
         this.GetComponent<Rigidbody>().MoveRotation(
               Quaternion.Euler(
                 -1 * Mathf.Atan(backFrontDifference / averageZDistance * (1 - rotationDamp)) * 180/Mathf.PI, 
-                mainCam.transform.rotation.y * 180/Mathf.PI,
+                rotationReference.transform.rotation.y * 180/Mathf.PI,
                 Mathf.Atan(leftRightDifference / averageXDistance * (1 - rotationDamp)) * 180 / Mathf.PI
             )
         );
