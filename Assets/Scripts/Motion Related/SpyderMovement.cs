@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpyderMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 10f;
-    [SerializeField] private bool playerControlled = false;
+    [SerializeField] private bool playerControlled = true;
 
 
     Rigidbody rb;
@@ -35,7 +35,7 @@ public class SpyderMovement : MonoBehaviour
 
         if (playerControlled)
         {
-            input = new Vector3(InputX, 0, InputZ);
+            input = this.transform.rotation * new Vector3(InputX, 0, InputZ);
             Vector3 target = new Vector3(this.transform.position.x, initialElevation + Elevation, this.transform.position.z);
 
             Vector3 elevation = target - this.transform.position ;
@@ -50,7 +50,7 @@ public class SpyderMovement : MonoBehaviour
         }
         else
         {
-            input = Vector3.forward;
+            //non-player controlled movement here
         }
         
     }

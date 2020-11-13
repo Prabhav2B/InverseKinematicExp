@@ -58,7 +58,7 @@ public class MeshTest : MonoBehaviour
         return new Vector2(pt.x + tileWidth, pt.y + tileHeight);
     }
 
-    Vector2[] rotateMeshQuadrant(Vector2[] vArray)
+    Vector2[] RotateMeshQuadrant(Vector2[] vArray)
     {
         return new Vector2[]{
             rotatePtCW(vArray[0]), rotatePtCW(vArray[1]), rotatePtCW(vArray[2]),
@@ -66,7 +66,7 @@ public class MeshTest : MonoBehaviour
         };
     }
 
-    Vector2[] translateMeshQuadrant(Vector2[] vArray)
+    Vector2[] TranslateMeshQuadrant(Vector2[] vArray)
     {
         return new Vector2[]{
             translatePt(vArray[0]), translatePt(vArray[1]), translatePt(vArray[2]),
@@ -76,7 +76,7 @@ public class MeshTest : MonoBehaviour
 
 
 
-    void updateMesh()
+    void UpdateMesh()
     {
         MeshRenderer meshRenderer = gameObject.GetComponent(typeof(MeshRenderer)) as MeshRenderer;
         MeshFilter meshFilter = gameObject.GetComponent(typeof(MeshFilter)) as MeshFilter;
@@ -103,7 +103,7 @@ public class MeshTest : MonoBehaviour
             }
         }
 
-        Debug.Log("verts " + vertices.Length);
+        //Debug.Log("verts " + vertices.Length);
 
         mesh.vertices = vertices;
 
@@ -149,7 +149,7 @@ public class MeshTest : MonoBehaviour
             }
         }
 
-        Debug.Log("tris " + tris.Length);
+        //Debug.Log("tris " + tris.Length);
 
         mesh.triangles = tris;
 
@@ -179,10 +179,10 @@ public class MeshTest : MonoBehaviour
 
     void Start()
     {
-        updateMesh();
+        UpdateMesh();
     }
     void OnValidate()
     {
-        updateMesh();
+        UpdateMesh();
     }
 }
